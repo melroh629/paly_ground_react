@@ -1,44 +1,63 @@
 import './App.css';
-import {useState} from 'react'
+import { useState } from 'react';
 
 function App() {
-	// let post = '오늘의 일기';
-	let [title, setTitle] = useState(['quiz: state 언제 써야하지?', 'js Destructuring (디스트럭처링)', 'state를 배열로도 가능', 'JS Destructuring']);
-	let [따봉, 따봉변경] = useState(0);
-	
-
+	let post = '역삼우동맛집'
+	let [글제목,제목변경] = useState(['남자코트 추천','강남 우동맛집', '파이썬 독학']);
+	//a = state에 보관했던 자료 나옴
+	//b = state 변경 도와주는 함수
+	let [좋아요, 좋아요변경] = useState(0)
+	function 좋아요함수(){
+		좋아요변경(좋아요+1)
+	}
+	function 제목변경함수(){
+		let copy = [...글제목];
+		copy[0] = '여자코트추천';
+		제목변경(copy);
+	}
+	function listSort(){
+		let copy2 = [...글제목];
+		copy2.sort()
+		제목변경(copy2)
+	}
 	return (
 		<div className="App">
-			<div class="nav">
-				<h2 style={ {color: 'blue'} }>리액트로 만든 블로그임</h2>
+			<div className='black-nav'>
+				<h2>리액트로 만든 블로그임</h2>
 			</div>
-
-			<button onClick={ ()=>{
-				let titleCopy = [...title];
-				titleCopy.sort();
-				setTitle(titleCopy) 
-			} }>가나다 정렬</button>
-
-			<div class="list">
-				<h4>{ title[0] }</h4>
-				<p>5월 14일 발행</p>
-				<p>변경시 자동으로 html에 반영하게 되도록 하고 싶으면 좋은 말 할때 state 쓰자</p>
-				<b class="like" onClick={ ()=>{따봉변경(따봉++)} }>🥳 : { 따봉 }</b>
+			<button onClick={ 제목변경함수 }>제목변경버튼</button>
+			<button onClick={ listSort }>정렬 버튼</button>
+			<div className="list">
+				<h4>
+					{ 글제목[0] }
+					<span onClick={좋아요함수}>💘</span>
+					{좋아요}
+				</h4>
+				<p>발행: 2월 17일</p>
 			</div>
-			<div class="list">
-				<h4>{ title[1] }</h4>
-				<p>5월 14일 발행</p>
-				<p>구조 분해 분법(Destructuring)</p>
+			<div className="list">
+				<h4>{ 글제목[1] }</h4>
+				<p>발행: 2월 17일</p>
 			</div>
-			<div class="list">
-				<h4>{ title[2] }</h4>
-				<p>5월 14일 발행</p>
-				<p>useState([배열1, 배열2, 배열3])</p>
+			<div className="list">
+				<h4>{ 글제목[2] }</h4>
+				<p>발행: 2월 17일</p>
 			</div>
+			<Modal />
 		</div>
 	);
 }
 
+
+function Modal(){
+	return(
+		<div className='modal'>
+			<h4>제목</h4>
+			<p>날짜</p>
+			<p>상세내용</p>
+		</div>
+	)
+}
 // 변수와 state 차이점
 /*
 일반 변수는 html에 자동으로 변경 안됨
