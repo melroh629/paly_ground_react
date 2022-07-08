@@ -2,13 +2,14 @@ import './App.css';
 import { useState } from 'react';
 
 function App() {
-	let post = '역삼우동맛집'
+	
+	// let post = '역삼우동맛집'
 	let [글제목,제목변경] = useState(['남자코트 추천','강남 우동맛집', '파이썬 독학']);
 	//a = state에 보관했던 자료 나옴
 	//b = state 변경 도와주는 함수
-	let [좋아요, 좋아요변경] = useState(0)
+	let [좋아요, 좋아요변경state] = useState(0)
 	function 좋아요함수(){
-		좋아요변경(좋아요+1)
+		좋아요변경state(좋아요+1)
 	}
 	function 제목변경함수(){
 		let copy = [...글제목];
@@ -20,6 +21,11 @@ function App() {
 		copy2.sort()
 		제목변경(copy2)
 	}
+	let [modal,setModal] = useState(false);
+	function modalControl(){
+		setModal(!modal)
+	}
+	console.log('modal 상태는'+modal)
 	return (
 		<div className="App">
 			<div className='black-nav'>
@@ -28,7 +34,7 @@ function App() {
 			<button onClick={ 제목변경함수 }>제목변경버튼</button>
 			<button onClick={ listSort }>정렬 버튼</button>
 			<div className="list">
-				<h4>
+				<h4 onClick={ modalControl }>
 					{ 글제목[0] }
 					<span onClick={좋아요함수}>💘</span>
 					{좋아요}
@@ -36,14 +42,24 @@ function App() {
 				<p>발행: 2월 17일</p>
 			</div>
 			<div className="list">
-				<h4>{ 글제목[1] }</h4>
+				<h4 onClick={ ()=> { setModal(!modal) } }>{ 글제목[1] }</h4>
 				<p>발행: 2월 17일</p>
 			</div>
 			<div className="list">
 				<h4>{ 글제목[2] }</h4>
-				<p>발행: 2월 17일</p>
+				<p>발행: 2월 10일</p>
 			</div>
-			<Modal />
+			{
+				// modal == true ? <Modal></Modal> : null
+				글제목.map(function(a,i){ 
+					return (
+						<div className="list">
+							<h4>{ 글제목[i] }</h4>
+							<p>발행: 2월 10일</p>
+						</div>
+					)
+				})
+			}
 		</div>
 	);
 }
