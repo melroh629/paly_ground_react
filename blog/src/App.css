@@ -15,6 +15,16 @@
 }
 .list h4 {font-size: 19px; margin-bottom: 10px;}
 .list p { font-size: 14px;}
+.button {
+  display: block;
+  border: none;
+  outline: none;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 10px;
+  background-color: lavender;
+  cursor: pointer;
+}
 .modal {
   position: fixed;
   bottom: 0;
