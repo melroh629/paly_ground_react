@@ -2,6 +2,11 @@
 class는 js내에서 class선언임.
 2. 데이터 바인딩은 중괄호로 {}
 
+변수와 state 차이점
+
+일반 변수는 html에 자동으로 변경 안됨
+state는 변경 되면 자동으로 재렌더링 됨 
+변경시 자동으로 html에 반영하게 되도록 하고 싶으면 좋은 말 할때 state 쓰자
 
 언제 컴포넌트 만들면 좋은가
 1. 반복적인 html 축약할때
@@ -18,3 +23,30 @@ state가져다 쓸떄 문제생김
 
 삼항연산자
 조건식 ? 참일떄 실행할 코드 : 거짓일 때 실행할 코드
+
+map함수
+1. array 자료 갯수만큼 함수안의 코드 실행해줌
+[1,2,3].map(funcution(){
+    console.log(1)
+})
+//1, 1, 1
+
+2. 함수의 파라미터는 array 안에 있던 자료임
+[1,2,3].map(function(a){
+    console.log(a)
+})
+//1, 2, 3
+3. return에 뭐 적으면 array로 담아줌
+[1,2,3].map(function(){
+    return'1234'
+})
+//1234,1234,1234
+
+부모 -> 자식 state 전송하는법
+props 사용
+1. <자식컴포넌트 작명={state이름}>
+ex) <Modal 작명={state이름}></Modal>
+2. props 파라미터 등록 후  props.작명 사용
+
+
+
